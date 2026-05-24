@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VisibleFirst Digital — Be Visible First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0D1B3E;
+    --navy-mid: #162447;
+    --blue-accent: #1A6FD4;
+    --gold: #E8C547;
+    --white: #F9F9F7;
+    --light-gray: #E8E8E4;
+    --text-muted: #8A8A82;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(13, 27, 62, 0.97);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo img {
+    height: 65px;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+  }
+  .whatsapp-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    background: #25D366;
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  nav a {
+    color: rgba(249,249,247,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-left: 2rem;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 600 !important;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(26,111,212,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: 20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(232,197,71,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    line-height: 0.95;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(249,249,247,0.65);
+    font-weight: 300;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232,197,71,0.3);
+  }
+
+  .btn-ghost {
+    border: 1px solid rgba(249,249,247,0.3);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    background: rgba(232,197,71,0.08);
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards 0.6s;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 380px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-card-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-row:last-child { border-bottom: none; }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(249,249,247,0.5);
+    font-weight: 300;
+  }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  .stat-value.green { color: #4CAF82; }
+  .stat-value.gold { color: var(--gold); }
+
+  .pulse-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #4CAF82;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+
+  /* PROBLEM SECTION */
+  .problem {
+    padding: 6rem 5%;
+    background: var(--light-gray);
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--blue-accent);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .problem-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    border-left: 3px solid var(--navy);
+    transition: transform 0.2s;
+  }
+
+  .problem-card:hover { transform: translateY(-4px); }
+
+  .problem-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .problem-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--navy);
+  }
+
+  .problem-card p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 6rem 5%;
+    background: var(--white);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    border: 1px solid var(--light-gray);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .service-card:hover {
+    border-color: var(--blue-accent);
+    transform: translateY(-4px);
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--navy), var(--blue-accent));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .service-card:hover::before { opacity: 1; }
+
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--light-gray);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--navy);
+  }
+
+  .service-card p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--blue-accent);
+    background: rgba(26,111,212,0.08);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+  }
+
+  /* HOW IT WORKS */
+  .process {
+    padding: 6rem 5%;
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .process .section-tag { color: var(--gold); }
+  .process .section-title { color: var(--white); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+  }
+
+  .step-num {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+
+  .step p {
+    font-size: 0.8rem;
+    color: rgba(249,249,247,0.5);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* WHY US */
+  .why {
+    padding: 6rem 5%;
+    background: var(--white);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .why-list {
+    list-style: none;
+  }
+
+  .why-list li {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .why-check {
+    width: 24px;
+    height: 24px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 0.7rem;
+    color: var(--gold);
+  }
+
+  .why-list h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--navy);
+  }
+
+  .why-list p {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .why-visual {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 2.5rem;
+    color: var(--white);
+  }
+
+  .why-visual h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+
+  .why-visual p {
+    font-size: 0.85rem;
+    color: rgba(249,249,247,0.5);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .mini-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .mini-stat:last-child { border-bottom: none; }
+
+  .mini-stat span:first-child {
+    font-size: 0.83rem;
+    color: rgba(249,249,247,0.6);
+  }
+
+  .mini-stat span:last-child {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 6rem 5%;
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2d5a 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: 'VISIBLE';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20vw;
+    color: rgba(255,255,255,0.02);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 10px;
+    white-space: nowrap;
+  }
+
+  .cta-section .section-tag { color: var(--gold); }
+
+  .cta-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    color: var(--white);
+    letter-spacing: 2px;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    color: rgba(249,249,247,0.6);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 5rem 5%;
+    background: var(--white);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .contact-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .contact-detail .icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(26,111,212,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    color: var(--navy);
+    background: var(--white);
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: var(--blue-accent);
+  }
+
+  .contact-form textarea { height: 120px; resize: none; }
+
+  .contact-form button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .contact-form button:hover {
+    background: var(--blue-accent);
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(249,249,247,0.4);
+    text-align: center;
+    padding: 2rem 5%;
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+
+  footer span { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(76,175,130,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(76,175,130,0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-grid, .problem-grid, .services-grid,
+    .why-grid, .contact-grid, .steps {
+      grid-template-columns: 1fr;
+    }
+    .steps::before { display: none; }
+    .hero-visual { display: none; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" alt="VisibleFirst Digital" onerror="this.style.display='none'">
+    Visible<span>First</span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#process">How It Works</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Google Business Profile Consulting</p>
+      <h1 class="hero-title">Your Business.<br><em>First</em> on Google.</h1>
+      <p class="hero-sub">We help local businesses in Tamil Nadu get found on Google — without paid ads, without a website. Just real customers, finding you first.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Get Free Consultation</a>
+        <a href="#services" class="btn-ghost">See What We Do</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-label"><span class="pulse-dot"></span>Live Business Snapshot</div>
+        <div class="stat-row">
+          <span class="stat-label">Google Visibility</span>
+          <span class="stat-value green">Top 3</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Monthly Calls</span>
+          <span class="stat-value gold">+340%</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Profile Completion</span>
+          <span class="stat-value">100%</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">New Enquiries / Month</span>
+          <span class="stat-value green">82</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Ad Spend</span>
+          <span class="stat-value">₹ 0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="section-inner">
+    <p class="section-tag">The Problem</p>
+    <h2 class="section-title">Your business exists. But Google doesn't <em>know</em> that.</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">🔍</div>
+        <h3>Invisible on Search</h3>
+        <p>When customers search for your service in Dharmapuri or Salem, your competitors show up and you don't. You lose every time — before the conversation even starts.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📵</div>
+        <h3>No Calls Coming In</h3>
+        <p>Your phone number isn't on Google. Customers who want to call you simply can't find how. That's free business walking away every single day.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⚠️</div>
+        <h3>Suspended or Incomplete Profile</h3>
+        <p>A wrong category, a flag, or an incomplete setup can get your GMB suspended. We recover and rebuild profiles that Google trusts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <p class="section-tag">What We Do</p>
+    <h2 class="section-title">Everything you need to be found first.</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Google Business Profile Setup</h3>
+        <p>We create and fully optimise your GMB listing from scratch — right categories, compelling description, photos, service areas, and contact details. Done correctly, the first time.</p>
+        <span class="service-tag">Most Popular</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Local SEO & Visibility Boost</h3>
+        <p>We push your listing to rank higher on Google Maps and local search results so your business appears when nearby customers search for what you offer.</p>
+        <span class="service-tag">High Impact</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>GMB Suspension Recovery</h3>
+        <p>Your profile got suspended? We analyse the root cause, fix compliance issues, and file the reinstatement appeal. We bring your business back — fast.</p>
+        <span class="service-tag">Urgent Help</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Monthly Visibility Management</h3>
+        <p>We manage your profile every month — fresh posts, review responses, photo updates, Q&A management — so Google keeps ranking you higher over time.</p>
+        <span class="service-tag">Ongoing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <p class="section-tag">How It Works</p>
+    <h2 class="section-title">Simple. Fast. Results in weeks.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Free Audit</h4>
+        <p>We analyse your current Google presence and identify exactly what's missing or wrong.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Setup & Optimise</h4>
+        <p>We build or fix your GMB listing using proven best practices for your industry and location.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Go Live</h4>
+        <p>Your business goes live on Google — visible, verified, and ready to receive calls.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Track & Grow</h4>
+        <p>We monitor performance, report results, and keep improving your visibility every month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div>
+        <p class="section-tag">Why VisibleFirst</p>
+        <h2 class="section-title">Local expertise. Real results.</h2>
+        <ul class="why-list">
+          <li>
+            <div class="why-check">✓</div>
+            <div>
+              <h4>No Website Needed</h4>
+              <p>We get you results using Google's own tools — no expensive website required to start.</p>
+            </div>
+          </li>
+          <li>
+            <div class="why-check">✓</div>
+            <div>
+              <h4>Zero Paid Ads</h4>
+              <p>Organic visibility through GMB optimisation. Your ranking is earned, not rented.</p>
+            </div>
+          </li>
+          <li>
+            <div class="why-check">✓</div>
+            <div>
+              <h4>Tamil Nadu Focused</h4>
+              <p>We understand Dharmapuri, Salem, Krishnagiri, Hosur, and Erode markets deeply.</p>
+            </div>
+          </li>
+          <li>
+            <div class="why-check">✓</div>
+            <div>
+              <h4>Transparent Reporting</h4>
+              <p>Monthly reports showing exactly how many people searched, viewed, and called your business.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="why-visual">
+        <h3>Our Service Areas</h3>
+        <p>Currently serving businesses across</p>
+        <div class="mini-stat"><span>Dharmapuri</span><span>Primary Base</span></div>
+        <div class="mini-stat"><span>Salem</span><span>Active</span></div>
+        <div class="mini-stat"><span>Krishnagiri</span><span>Active</span></div>
+        <div class="mini-stat"><span>Hosur</span><span>Active</span></div>
+        <div class="mini-stat"><span>Erode</span><span>Active</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="section-tag">Ready to Start?</p>
+  <h2>BE VISIBLE FIRST</h2>
+  <p>Get a free Google visibility audit for your business. No commitment. No cost. Just clarity on where you stand and how to improve.</p>
+  <div class="cta-buttons">
+    <a href="#contact" class="btn-primary">Book Free Audit</a>
+    <a href="https://wa.me/918825770716" class="btn-ghost">Chat on WhatsApp</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="section-tag">Get In Touch</p>
+      <h2 class="section-title">Let's make your business visible.</h2>
+      <p>Fill in the form and we'll get back to you within 24 hours with a free visibility report for your business.</p>
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        Kumaraswamy Pet, Dharmapuri, Tamil Nadu
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📞</div>
+        <a href="https://wa.me/918825770716" style="color:inherit;text-decoration:none;">+91 88257 70716</a>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">✉️</div>
+        <a href="mailto:visiblefirstdigital@gmail.com" style="color:inherit;text-decoration:none;">visiblefirstdigital@gmail.com</a>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">🌐</div>
+        visiblefirst.in
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📸</div>
+        @visiblefirst.in
+      </div>
+    </div>
+    <div class="contact-form">
+      <input type="text" placeholder="Your Name" />
+      <input type="text" placeholder="Business Name" />
+      <input type="tel" placeholder="WhatsApp Number" />
+      <input type="text" placeholder="Your City (Dharmapuri / Salem / Hosur...)" />
+      <textarea placeholder="Tell us about your business briefly..."></textarea>
+      <button type="button">Send Message — It's Free</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>VisibleFirst Digital</span> — Kumaraswamy Pet, Dharmapuri, Tamil Nadu &nbsp;|&nbsp; Be Visible First &nbsp;|&nbsp; <a href="mailto:visiblefirstdigital@gmail.com" style="color:inherit;">visiblefirstdigital@gmail.com</a></p>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/918825770716" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+</body>
+</html>
